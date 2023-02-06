@@ -10,13 +10,8 @@ class LinkedQ:
         self._size = 0
 
     def enqueue(self, value):
-        
-        # Vi behöver dela upp det i två cases:
-        # 1) När det inte finns en FIRST
-        # 2) När det finns en First
         self._size += 1
         tmp = Node(value)
-
         if self._last == None:
             self._first = tmp
             self._last = tmp
