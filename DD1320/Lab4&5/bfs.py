@@ -1,12 +1,11 @@
 from bintreeFile import Bintree
 from linkedQFile import LinkedQ
 
+
 class ParentNode:
     def __init__(self, word, parent = None):
         self.word = word
         self.parent: ParentNode = parent
-    def __str__(self):
-        return self.word
     def writechain(self):
         if self.parent == None:
             return self.word
@@ -40,7 +39,6 @@ def main():
     while not q.isEmpty():
         nod: ParentNode = q.dequeue()
         if nod.word == slut_ord:
-            print("Det finns en väg till", slut_ord)
             print(nod.writechain())
             raise SolutionFound()
         makechildren(nod, svenska, gamla, q)
