@@ -1,5 +1,4 @@
 from hashtable import Hashtable
-from sys import stdin
 
 def main():
     hashtable = Hashtable(150001)

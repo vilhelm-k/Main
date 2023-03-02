@@ -62,20 +62,20 @@ class HashtableAbstract: # abstract
         except KeyError:
             return False
 
-class Hashtable(HashtableAbstract): # linear probing
+class Hashtable(HashtableAbstract): # linear
     def store(self, key, data):
         """key: nyckeln
         data: objektet som ska lagras
         Stoppar in "data" med nyckeln "key" i tabellen."""
         hash_code = self.hashfunction(key)
-        if self.table[hash_code] == None:
+        if self.table[hash_code] is None:
             self.table[hash_code] = Node(key, data)
         elif self.table[hash_code].key == key:
             self.table[hash_code].data = data
         else:
             for _ in range(self.size):
                 hash_code = (hash_code + 1) % self.size
-                if self.table[hash_code] == None:
+                if self.table[hash_code] is None:
                     self.table[hash_code] = Node(key, data)
                     return
                 elif self.table[hash_code].key == key:
@@ -88,14 +88,14 @@ class Hashtable(HashtableAbstract): # linear probing
         Hamtar det objekt som finns lagrat med nyckeln "key" och returnerar det.
         Om "key" inte finns ska vi få en Exception, KeyError """
         hash_code = self.hashfunction(key)
-        if self.table[hash_code] == None:
+        if self.table[hash_code] is None:
             raise KeyError
         elif self.table[hash_code].key == key:
             return self.table[hash_code].data
         else:
             for _ in range(self.size):
                 hash_code = (hash_code + 1) % self.size
-                if self.table[hash_code] == None:
+                if self.table[hash_code] is None:
                     raise KeyError
                 elif self.table[hash_code].key == key:
                     return self.table[hash_code].data

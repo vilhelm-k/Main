@@ -1,7 +1,7 @@
 from hashtable import Hashtable
 
 def main():
-    hashtable = Hashtable(100)
+    hashtable = Hashtable(500)
 
     with open('DD1320/Lab7/test.txt') as f:
         for line in f:
@@ -17,6 +17,7 @@ def main():
                     print(value)
                 except KeyError:
                     print('None')
+    print(hashtable.table)
 
 if __name__ == "__main__":
     main()
