@@ -137,6 +137,13 @@ class Ruta:
     def __repr__(self):
         return f"Ruta(atom={self.atom}, num={self.num})"
 
+    def show(self, depth=0):
+        print(" " * depth, self)
+        if self.down is not None:
+            self.down.show(depth + 1)
+        if self.next is not None:
+            self.next.show(depth)
+
 
 def throw_syntax_error(error, radslut):
     raise SyntaxError(f"{error} vid radslutet {radslut}")
