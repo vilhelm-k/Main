@@ -1,4 +1,4 @@
-from molParser import checkSyntax
+from molParser import checkSyntax, readformel, weight, ATOMS
 import unittest
 
 
@@ -22,6 +22,17 @@ class TestMolParser(unittest.TestCase):
         self.assertEqual(checkSyntax("(Cl)2)3"), "Felaktig gruppstart vid radslutet )3")
         self.assertEqual(checkSyntax(")"), "Felaktig gruppstart vid radslutet )")
         self.assertEqual(checkSyntax("2"), "Felaktig gruppstart vid radslutet 2")
+
+    def test_weights(self):
+        self.assertEqual(weight(readformel("Na")), ATOMS["Na"])
+        self.assertEqual(weight(readformel("H2O")), ATOMS["H"] * 2 + ATOMS["O"])
+        self.assertEqual(weight(readformel("Na332")), ATOMS["Na"] * 332)
+        self.assertEqual(
+            weight(readformel("Si(C3(COOH)2)4(H2O)7")),
+            ATOMS["Si"]
+            + (ATOMS["C"] * 3 + (ATOMS["C"] + ATOMS["O"] * 2 + ATOMS["H"]) * 2) * 4
+            + (ATOMS["H"] * 2 + ATOMS["O"]) * 7,
+        )
 
 
 if __name__ == "__main__":
